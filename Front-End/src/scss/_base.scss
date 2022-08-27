@@ -1,0 +1,27 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  
+  overflow-x: hidden;  
+}
+
+h1,
+h3 {
+  color: $primary;
+  font-weight: $font-weight-strong;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+

@@ -1,0 +1,21 @@
+.button-group {
+    @include flex-row-center;
+  }
+  
+  .btn {
+    padding: $button-padiing;
+    font-weight: $button-font-weight;
+    border: none;
+    border-radius: $btutton-border-radius;
+    cursor: pointer;
+    transition: $transition;
+    background: none;
+  }
+  
+  .btn:hover {
+    box-shadow: $shadow-strong !important;
+  }
+  
+  .btn:active {
+    outline: 1px solid $black;
+  }

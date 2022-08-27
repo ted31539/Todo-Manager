@@ -1,0 +1,178 @@
+.todo-form {
+  width: 100%;
+  @include flex-column-center;
+  box-shadow: $shadow;
+  transition: $transition-fast;
+  padding: 1rem 2rem 1.5rem 1rem;
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+  &:hover {
+    box-shadow: $shadow-strong;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .form-control {
+    @include flex-row-center;
+    align-items: stretch;
+    margin-bottom: 0.25rem;
+  }
+
+  .todo-form-content {
+    width: 70%;
+    border: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: $shadow;
+    &:focus {
+      outline: none;
+      box-shadow: $shadow-strong;
+    }
+  }
+  .btn-form-send {
+    color: $button-text-color-comfirm;
+    border-radius: 0 0.25rem 0.25rem 0;
+    background: $button-bg-confirm;
+    box-shadow: $shadow;
+  }
+}
+
+.edit-modal {
+  @include transform-middle;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+
+  background: rgba(59, 58, 58, 0.5);
+
+  .modal-dialog {
+    height: 80%;
+    @include flex-column-center;
+  }
+
+  .modal-content {
+    background: $white;
+    padding: 1rem;
+    box-shadow: $shadow-strong;
+    @include flex-column-center;
+    .form-control {
+      max-width: 100%;
+      display: flex;
+      padding: 1rem;
+
+      label {
+        @include flex-column-center;
+        align-items: start;
+        width: 4rem;
+        margin-right: 1rem;
+        font-weight: $font-weight-strong;
+      }
+
+      input[type='text'] {
+        width: 80%;
+        height: 1.5rem;
+        border: none;
+        background: $gray;
+        box-shadow: $shadow;
+
+        &:focus {
+          outline: none;
+          box-shadow: $shadow-strong;
+        }
+      }
+      input[type='checkbox'] {
+        margin: auto 0;
+      }
+
+      p {
+        display: inline;
+        flex-wrap: wrap;
+        width: 80%;
+        overflow-wrap: break-word;
+      }
+    }
+  }
+
+  .btn-modal-send {
+    width: 100%;
+    color: $button-text-color-comfirm;
+    background: $button-bg-confirm;
+    box-shadow: $shadow;
+  }
+
+  .btn-modal-cancel {
+    width: 100%;
+    background: $button-bg-cancel;
+    color: $button-text-color-cancel;
+    box-shadow: $shadow;
+  }
+}
+
+.todo-list {
+  @include flex-column-center;
+  width: 100%;
+  transition: $transition;
+
+  li {
+    width: 100%;
+    @include flex-row-center;
+    justify-content: space-between;
+    font-weight: $font-weight-strong;
+    padding: 0.5rem 1.5rem;
+    box-shadow: $shadow;
+    transition: $transition-fast;
+    margin-bottom: 0.75rem;
+    &:hover {
+      box-shadow: $shadow-strong;
+    }
+    .bi-check-circle {
+      color: $info;
+      margin-right: 0.5rem;
+    }
+    .btn:hover {
+      box-shadow: none !important;
+      transform: scale(1.25);
+    }
+    .todo-done {
+      text-decoration: line-through;
+    }
+
+    .bi-trash-fill {
+      color: $danger;
+    }
+    .bi-pencil-square {
+      color: $secondry;
+    }
+    .todo-list-alert {
+      @include flex-row-center;
+      font-size: $font-size-sm;
+      text-shadow: $text-shadow;
+      font-weight: $font-weight-light;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.alert {
+  @include flex-row-center;
+  width: 100%;
+  font-size: $font-size-sm;
+  text-shadow: $text-shadow;
+  font-weight: $font-weight-light;
+  padding: 1rem 1.5rem;
+  height: 32px;
+  p {
+    text-align: center;
+  }
+}
+
+.bi-arrow-clockwise::before {
+  font-size: 2rem;
+  color: $info;
+  animation-name: rotate;
+  animation-timing-function: linear;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+}
