@@ -11,7 +11,6 @@ const api = 'https://thawing-waters-97059.herokuapp.com';
 let singleTodoAlertDOM;
 let btnIsDisabled = false;
 
-
 function getTodo(id) {
   try {
     return http.get(`${api}/api/todo/${id}`);
@@ -46,7 +45,6 @@ function editTodo(id, content) {
 
 function renderTodos(todos) {
   const todosPropertiesAry = Object.keys(todos);
-  renderAlert(todoListDOM, "<i class='bi bi-arrow-clockwise'>");
 
   let str = '';
   todosPropertiesAry.forEach((item) => {
@@ -111,12 +109,12 @@ function renderTodo(id, todo) {
   completedCheckedDOM.checked = todo.todo.completed;
 }
 
-async function showTodos() {
+async function showTodos() {  
   try {
     let { data, success } = await http.get(`${api}/api/todo`);
     if (success) {
-      if(!data) {
-        return
+      if (!data) {
+        return;
       }
       renderTodos(data);
     }
@@ -138,7 +136,7 @@ todoListDOM.addEventListener('click', async (e) => {
   }
 
   // 如果 all btns disablrd return
-  if (btnIsDisabled) {   
+  if (btnIsDisabled) {
     return;
   }
   // 改變 btn State control
@@ -190,7 +188,7 @@ todoListDOM.addEventListener('click', async (e) => {
       const { data: todo } = await getTodo(id);
       // create Modal
       renderTodo(id, todo);
-      renderAlert(singleTodoAlertDOM, '');     
+      renderAlert(singleTodoAlertDOM, '');
 
       const editModalDOM = document.querySelector('#edit-modal');
       const editTodoContentDOM = document.querySelector('.todo-edit-content');
@@ -200,10 +198,10 @@ todoListDOM.addEventListener('click', async (e) => {
       const modalAlertDOM = document.querySelector('#modal-alert');
       const editModalSendBtn = document.querySelector('#edit-modal-send');
 
-       // 改變 btn State control
-       btnIsDisabled = false;
-       // 改變 all btns disablrd attribute
-       setBtnDisabledState(btnIsDisabled);
+      // 改變 btn State control
+      btnIsDisabled = false;
+      // 改變 all btns disablrd attribute
+      setBtnDisabledState(btnIsDisabled);
 
       // 監聽 modal
       editModalDOM.addEventListener('click', async (e) => {
@@ -344,4 +342,21 @@ function renderAlert(dom, message) {
   dom.innerHTML = message;
 }
 
-showTodos();
+async function init() {
+  // render todoList alert
+  renderAlert(todoListDOM, "<i class='bi bi-arrow-clockwise'>");
+  try {
+    let { data, success } = await http.get(`${api}/api/todo`);
+    if (success) {
+      if (!data) {
+        return;
+      }
+      renderAlert(todoListDOM, "");
+      renderTodos(data);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+init();
